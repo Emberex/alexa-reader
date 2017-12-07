@@ -1,4 +1,4 @@
-# alexa-bookreader
+# alexa-reader
 
 ## Setup
 
