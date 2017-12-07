@@ -1,0 +1,14 @@
+ReadIntent continue reading
+ReadIntent let's read
+ReadIntent read to me
+ReadIntent start where you left off
+ReadIntent start where you left off
+ReadIntent continue where you stopped
+ReadIntent continue where you left off
+ReadIntent let's read {booktitle}
+ReadIntent read {booktitle}
+ReadIntent continue reading {booktitle}
+ReadIntent read more {booktitle}
+ReadIntent read {booktitle} to me
+AMAZON.StopIntent stop reading
+AMAZON.StopIntent stop

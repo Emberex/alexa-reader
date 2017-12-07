@@ -1,0 +1,11 @@
+{
+  "httpPort": 8080,
+  "httpsPort": 8081,
+  "dbName": "bookreader",
+  "dbHost": "localhost",
+  "dbUser": "root",
+  "dbPassword": "",
+  "cooldownEnabled": true,
+  "cooldownCheckTime": 10,
+  "cooldownCheckDistance": 100
+}
