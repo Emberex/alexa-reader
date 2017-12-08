@@ -10,6 +10,18 @@
       "intent": "ReadIntent"
     },
     {
+      "intent": "ChangeUserIntent",
+      "slots": [
+        {
+          "name": "name",
+          "type": "AMAZON.LITERAL"
+        }
+      ]
+    },
+    {
+      "intent": "GetNameIntent"
+    },
+    {
       "intent": "AMAZON.StopIntent"
     },
     {

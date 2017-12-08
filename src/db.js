@@ -37,24 +37,35 @@ module.exports = {
       .first();
   },
 
-  createUser(alexaUserId) {
+  createUser(alexaUserId, name=null) {
     return db('users')
       .returning(all)
       .insert({
+        name,
         alexa_user_id: alexaUserId,
-        name: null,
       })
       .then(first);
   },
 
   findUserByAlexaId(alexaUserId) {
-    return db('users').where('alexa_user_id', '=', alexaUserId).first();
+    return db('users').where('alexa_user_id', alexaUserId).first();
   },
 
-  async findOrCreateUserByAlexaId(alexaUserId) {
+  async findOrCreateUserByAlexaId(alexaUserId, name='guest') {
     return (
       (await this.findUserByAlexaId(alexaUserId)) ||
-      (await this.createUser(alexaUserId))
+      (await this.createUser(alexaUserId, name))
+    );
+  },
+
+  findUserByName(name) {
+    return db('users').where('name', name).first();
+  },
+
+  async findOrCreateUserByName(alexaUserId, name) {
+    return (
+      (await this.findUserByName(name)) ||
+      (await this.createUser(alexaUserId, name))
     );
   },
 

@@ -48,6 +48,31 @@ const intentHandlers = {
     }
   },
 
+  async 'GetNameIntent'(event, context, user) {
+    const text = `You are ${user.name}`;
+    return createResponse({}, {
+      title: text,
+      speech: text,
+    });
+  },
+
+  async 'ChangeUserIntent'(event, context, user) {
+    const alexaUserId = event.session.user.userId;
+    const name = getSlotValue(event, 'name');
+    if(!name) {
+      return createResponse({}, {
+        title: 'You must provide a name',
+        speech: 'You must provide a name',
+      });
+    }
+    const newUser = await db.findOrCreateUserByName(alexaUserId, name.toLowerCase());
+
+    return createResponse({user: newUser}, {
+      title: 'User changed',
+      speech: `User changed to ${newUser.name}`,
+    });
+  },
+
   async 'AMAZON.StopIntent'(event, context, user) {
     const { attributes={} } = event.session;
     const { readingSession, currentTextChunk } = attributes;
@@ -134,7 +159,13 @@ const requestHandlers = {
 module.exports = async (event, context) => {
   try {
     const alexaUserId = event.session.user.userId;
-    const user = await db.findOrCreateUserByAlexaId(alexaUserId);
+    const { attributes } = event.session;
+    let user = attributes && attributes.user;
+
+    if(!user) {
+      user = await db.findOrCreateUserByAlexaId(alexaUserId, 'guest');
+    }
+
     const requestHandler = requestHandlers[event.request.type];
 
     if(requestHandler) {

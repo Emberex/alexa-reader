@@ -1,3 +1,15 @@
+GetNameIntent what is my name
+GetNameIntent who is this
+GetNameIntent identify me.
+GetNameIntent who is speaking to you
+GetNameIntent who am I
+
+ChangeUserIntent I'm {Gary | name}
+ChangeUserIntent I am {Joe Schmoe | name}
+ChangeUserIntent My name is {Nate | name}
+ChangeUserIntent change user to {Jimmy | name}
+ChangeUserIntent this is {Tom | name}
+
 ReadIntent continue reading
 ReadIntent let's read
 ReadIntent read to me
